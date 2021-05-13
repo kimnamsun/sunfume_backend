@@ -1,7 +1,5 @@
 class ItemEachSerializer < Panko::Serializer
-  include ImagableSerializer
-
-  attributes :id, :user_id, :name, :list_price, :sale_price, :sale_rate
+  attributes :id, :name, :price, :description, :category_id, :images, :status, :stock
 
   has_one :category, serializer: CategorySerializer
   has_many :options, serializer: OptionEachSerializer

@@ -1,3 +1,4 @@
 class OptionEachSerializer < BaseSerializer
-  attributes :id, :item_id, :name, :created_at, :updated_at, :option_price 
+  attributes :id, :item_id, :name, :add_price 
+  # has_one :item, serializer: ItemEachSerializer
 end

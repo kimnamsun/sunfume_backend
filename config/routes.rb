@@ -23,11 +23,11 @@ Rails.application.routes.draw do
                registrations: "users/registrations"
              }
 
-  resources :items
+  resources :items do
+    resources :options, only: :index
+    resources :likes
+  end
 
-  # get '/items' => 'items#index'
-  # post '/items' => 'items#create'
-  # get '/items/:id' => 'items#show'
-  # put '/items/:id' => 'items#update'
-  # delete '/items/:id' => 'items#destory'
+  resources :users
+  resources :categories
 end

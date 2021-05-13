@@ -1,3 +1,4 @@
   class ItemSerializer < BaseSerializer
-    attributes :id, :user_id, :name, :list_price, :sale_price, :sale_rate, :description, :category_id, :image_ids
+    attributes :id, :name, :price, :description, :category_id, :images, :status, :stock
+    has_many :options, serializer: OptionEachSerializer
   end
