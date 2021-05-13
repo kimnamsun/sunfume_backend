@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_050937) do
+ActiveRecord::Schema.define(version: 2021_05_13_084950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_050937) do
     t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "items_id"
+    t.index ["items_id"], name: "index_line_items_on_items_id"
     t.index ["option_id"], name: "index_line_items_on_option_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
   end
@@ -101,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_050937) do
     t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -165,6 +168,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_050937) do
 
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
+  add_foreign_key "line_items", "items", column: "items_id"
   add_foreign_key "line_items", "options"
   add_foreign_key "line_items", "orders"
   add_foreign_key "options", "items"
