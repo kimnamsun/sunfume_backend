@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
-             path: "",
+             path: "/",
              path_names: {
                sign_in: "login",
                sign_out: "logout",
@@ -23,9 +23,11 @@ Rails.application.routes.draw do
                registrations: "users/registrations"
              }
 
-  resources :categories
   resources :items
-  resources :images do
-    post :dropzone, on: :collection
-  end
+
+  # get '/items' => 'items#index'
+  # post '/items' => 'items#create'
+  # get '/items/:id' => 'items#show'
+  # put '/items/:id' => 'items#update'
+  # delete '/items/:id' => 'items#destory'
 end

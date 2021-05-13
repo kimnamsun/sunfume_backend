@@ -73,7 +73,7 @@ class ApiController < ActionController::API
     Panko::ArraySerializer.new(
       objects,
       context: context,
-      each_serializer: serializer,
+      each_serializer: serializer_name.constantize,
       only: only,
       except: except
     ).to_a
