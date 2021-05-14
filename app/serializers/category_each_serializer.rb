@@ -1,3 +1,3 @@
 class CategoryEachSerializer < Panko::Serializer
-  attributes :id, :name
+  attributes :id, :name, :image_path
 end
