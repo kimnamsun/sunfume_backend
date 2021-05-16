@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :categories
+
+  get '/items/category/:id' => 'items#category_item'
 end
