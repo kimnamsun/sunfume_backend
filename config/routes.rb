@@ -31,5 +31,9 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
 
+  resources :likes do
+    resources :items
+  end
+
   get '/items/category/:id' => 'items#category_item'
 end

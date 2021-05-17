@@ -3,7 +3,10 @@ class ItemsController < ApiController
 
   def index
     items = Item.ransack(index_params).result
-    render json: each_serialize(items)
+    render json: {
+      items: each_serialize(items),
+      total_count: items.count
+    }
   end
   
   def update
@@ -17,7 +20,10 @@ class ItemsController < ApiController
 
   def category_item
     category_items = Item.joins(:category).where(category_id: params[:id])
-    render json: category_items
+    render json:  {
+      items: category_items,
+      total_count: category_items.count
+    }
   end
   
   private
