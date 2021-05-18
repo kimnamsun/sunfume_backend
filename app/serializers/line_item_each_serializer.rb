@@ -1,0 +1,4 @@
+class LineItemEachSerializer < BaseSerializer
+  attributes :id, :order_id, :option_id, :quantity, :total_price, :created_at, :items_id 
+  has_one :option, serializer: OptionEachSerializer
+end
