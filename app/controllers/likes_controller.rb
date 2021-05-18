@@ -9,8 +9,9 @@ class LikesController < ApiController
   end
 
   def create
-    like = @user.likes.create(like_item_params)
-    render json: { message: "SUCCESS" }
+    # like = @user.liked_items.create(params[:item_id])
+    like = Like.create(user_id: @user.id, "item_id": like_params)
+    render json: serialize(like)
   end
   
   def destroy
@@ -20,8 +21,8 @@ class LikesController < ApiController
 
   private
   
-  def like_item_params
-    params.require(:like).permit(:item_id)
+  def like_params
+    params.permit(:item_id)
   end
 
   def set_user

@@ -1,3 +1,4 @@
 class LikeSerializer < BaseSerializer
-  attributes :id, :user_id, :item_id
+  attributes :id, :item_id
+  has_many :item, serializer: ItemEachSerializer
 end
