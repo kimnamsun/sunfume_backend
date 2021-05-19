@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :items
   end
 
-  resources :orders, only: :index
+  resources :orders
   resources :line_items
 
   get '/items/category/:id' => 'items#category_item'
