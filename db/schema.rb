@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_062522) do
+ActiveRecord::Schema.define(version: 2021_05_19_073458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_062522) do
     t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "items_id"
-    t.index ["items_id"], name: "index_line_items_on_items_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_line_items_on_item_id"
     t.index ["option_id"], name: "index_line_items_on_option_id"
     t.index ["order_id"], name: "index_line_items_on_order_id"
   end
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_062522) do
 
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
-  add_foreign_key "line_items", "items", column: "items_id"
+  add_foreign_key "line_items", "items"
   add_foreign_key "line_items", "options"
   add_foreign_key "line_items", "orders"
   add_foreign_key "options", "items"
