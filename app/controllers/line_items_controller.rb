@@ -26,7 +26,9 @@ class LineItemsController < ApiController
 
   def update
     @line_item.update(quantity: params[:itemAmount])
-    render json: serialize(@line_item)
+    all_line_item = LineItem.all
+    puts(all_line_item)
+    render json: each_serialize(all_line_item)
   end
 
   def destroy
