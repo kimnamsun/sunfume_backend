@@ -2,19 +2,31 @@ class OrdersController < ApiController
   before_action :set_user
 
   def index
-    orders = @user.orders.where(status:1) 
+    orders = @user.orders.active
     render json: each_serialize(orders)
   end
 
   def create
-    orders = @user.orders.create(order_params)
+    pending_order = @user.orders.pending
+
+    # order를 하나만 생성하고 싶은데 안됨.
+    orders = if pending_order.nil?
+               # orders = if pending_order == nil
+               pending_order.update(order_params)
+             else
+               @user.orders.create(order_params)
+             end
+
     render json: orders
   end
 
   def update
-    order_id = @user.orders.last.id
-    orders = Order.find(order_id).update(order_params)
-    render json: orders
+    order_ids = @user.orders.pending.ids
+
+    order_ids.each do |id|
+      Order.find(id).update(order_params)
+    end
+    render json: { MESSAGE: 'success' }
   end
 
   def destroy
@@ -23,12 +35,12 @@ class OrdersController < ApiController
   end
 
   private
+
   def order_params
-    params.permit(:receiver_name, :receiver_phone, :status)
+    params.permit(:name, :phone, :address1, :total_price, :status)
   end
 
   def set_user
     @user = current_api_user
   end
-
 end

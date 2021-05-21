@@ -7,20 +7,20 @@ class LikesController < ApiController
     like_items = Item.where(id: item_id)
     render json: each_serialize(like_items)
   end
-  
+
   def create
     like_id = @user.likes.create(like_params).item_id
     like = Item.find(like_id)
     render json: like
   end
-  
+
   def destroy
     like_delete = @user.liked_items.destroy(params[:id])
     render json: like_delete
   end
 
   private
-  
+
   def like_params
     params.require(:like).permit(:item_id)
   end
@@ -28,5 +28,4 @@ class LikesController < ApiController
   def set_user
     @user = current_api_user
   end
-
 end

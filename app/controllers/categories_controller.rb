@@ -1,5 +1,5 @@
 class CategoriesController < ApiController
-  before_action :set_category, only: [:show, :update]
+  before_action :set_category, only: %i[show update]
 
   def index
     categories = Category.all

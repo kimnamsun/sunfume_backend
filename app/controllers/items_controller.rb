@@ -1,5 +1,5 @@
 class ItemsController < ApiController
-  before_action :set_item, only: [:show, :update, :category_item]
+  before_action :set_item, only: %i[show update category_item]
 
   def index
     items = Item.ransack(index_params).result
@@ -8,7 +8,7 @@ class ItemsController < ApiController
       total_count: items.count
     }
   end
-  
+
   def update
     @item.update(item_params)
     render json: serialize(@item)
@@ -20,14 +20,14 @@ class ItemsController < ApiController
 
   def category_item
     category_items = Item.joins(:category).where(category_id: params[:id])
-    render json:  {
+    render json: {
       items: category_items,
       total_count: category_items.count
     }
   end
-  
+
   private
-  
+
   def item_params
     params.require(:item).permit(images: [])
   end
