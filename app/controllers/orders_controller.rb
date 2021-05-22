@@ -5,6 +5,11 @@ class OrdersController < ApiController
     orders = @user.orders.active
     render json: each_serialize(orders)
   end
+  
+  def show
+    orders = @user.orders.active
+    render json: each_serialize(orders)
+  end
 
   def create
     pending_order = @user.orders.pending

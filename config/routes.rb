@@ -40,4 +40,7 @@ Rails.application.routes.draw do
 
   get '/items/category/:id' => 'items#category_item'
   put '/orders' => 'orders#update'
+  get '/orders/list' => 'orders#show'
+  get '/users/:id' => 'users#show'
+  put '/users/:id' => 'users#update'
 end

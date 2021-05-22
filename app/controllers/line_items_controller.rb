@@ -11,6 +11,11 @@ class LineItemsController < ApiController
     }
   end
 
+  def show
+    line_items = LineItem.active
+    render json: each_serialize(line_items)
+  end
+
   def create
     order_ids = @user.orders.pending.ids
     is_exist  = LineItem.where(order_id: order_ids, option_id: params[:option_id]).exists?
