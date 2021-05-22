@@ -37,10 +37,16 @@ Rails.application.routes.draw do
 
   resources :orders
   resources :line_items
+  
+  resources :reviews do
+    resources :items
+  end
 
   get '/items/category/:id' => 'items#category_item'
   put '/orders' => 'orders#update'
   get '/orders/list' => 'orders#show'
   get '/users/:id' => 'users#show'
   put '/users/:id' => 'users#update'
+  # get '/reviews' => 'reviews#index'
+
 end

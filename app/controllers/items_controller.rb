@@ -27,7 +27,6 @@ class ItemsController < ApiController
   end
 
   private
-
   def item_params
     params.require(:item).permit(images: [])
   end

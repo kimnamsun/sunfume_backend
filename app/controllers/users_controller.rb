@@ -10,6 +10,7 @@ class UsersController < ApiController
     render json: { MESSAGE: 'success' }
   end
 
+  private
   def user_params
     params.permit(:name, :phone, :birthday)
   end

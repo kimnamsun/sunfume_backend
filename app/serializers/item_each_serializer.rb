@@ -3,4 +3,5 @@ class ItemEachSerializer < Panko::Serializer
 
   has_one :category, serializer: CategorySerializer
   has_many :option, serializer: OptionEachSerializer
+  has_many :reviews, serializer: ReviewEachSerializer
 end

@@ -40,7 +40,6 @@ class OrdersController < ApiController
   end
 
   private
-
   def order_params
     params.permit(:name, :phone, :address1, :total_price, :status)
   end

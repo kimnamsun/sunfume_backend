@@ -20,7 +20,6 @@ class LikesController < ApiController
   end
 
   private
-
   def like_params
     params.require(:like).permit(:item_id)
   end

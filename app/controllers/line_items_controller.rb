@@ -40,7 +40,6 @@ class LineItemsController < ApiController
   end
 
   private
-
   def line_item_params
     params.permit(:option_id, :quantity, :total_price, :item_id)
   end
