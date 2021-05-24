@@ -9,13 +9,5 @@ class Item < ApplicationRecord
   has_many :reviews, dependent: :destroy
 	has_many :reviewed_user, through: :reviews, source: :user
 
-  def puts_item_name
-    puts self.name
-  end
-
-  def self.puts_item_names
-    self.find_each do |item|
-      puts item.name
-    end
-  end
+  paginates_per 6
 end

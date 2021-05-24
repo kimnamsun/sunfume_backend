@@ -8,49 +8,6 @@
 
 # AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?
 
-# name: "꽃향기 향수",
-#  price: 80000,
-#  category_id: 1,
-#  description: "뿌리면 꽃향기가 솔솔",
-#  status: "active",
-#  stock: 100,
-#  capacity: "30ml",
-#  created_at: Thu, 13 May 2021 14:12:21 KST +09:00,
-#  updated_at: Sat, 15 May 2021 15:35:37 KST +09:00,
-#  images:
-#   ["https://nonfiction.kr/web/product/small/20191122/109f249109a6dc94fc48329b70a9e911.jpg",
-#    "https://nonfiction.kr/web/product/extra/small/202009/6a739cba512656ba0b06276801952ebe.jpg",
-#    "https://nonfiction.kr/web/product/extra/small/202104/e61d4d4176e4e3d3e6bb196b48b1811e.jpg",
-#    "https://nonfiction.kr/web/product/extra/small/20200213/78b33b9b1b76f606dc653f447c734e04.jpg"]>
-
-# id: 3,
-#   name: "상큼한 바디워시",
-#   price: 30000,
-#   category_id: 2,
-#   description: "상큼한 오렌지향 바디워시",
-#   status: "active",
-#   stock: 60,
-#   capacity: "300ml",
-#   created_at: Thu, 13 May 2021 15:59:20 KST +09:00,
-#   updated_at: Sat, 15 May 2021 15:36:50 KST +09:00,
-#   images:
-#    ["https://nonfiction.kr/web/product/small/20191125/cadad7f62b12222471828f449c472935.jpg",
-#     "https://nonfiction.kr/web/product/extra/small/20200213/7ab0fadbea375f8b6c093b536a9aa216.jpg"]>]
-
-
-# id: 5,
-# name: "뽀득뽀득 비누",
-# price: 9500,
-# category_id: 4,
-# description: "세정력이 좋은 비누",
-# status: "active",
-# stock: 130,
-# capacity: "50g",
-# created_at: Thu, 13 May 2021 16:00:53 KST +09:00,
-# updated_at: Sat, 15 May 2021 15:56:22 KST +09:00,
-# images:
-#  ["https://assets.hermes.com/is/image/hermesproduct/eau-d-orange-verte-perfumed-soap--24736-front-1-300-0-1000-1000_b.jpg"]>]
-
 Item.create(name: "로즈 오 드 퍼퓸", price: 135000, category_id: 1, description: "장미 향이지만 활기찬 시소 향, 우드, 스파이스, 흙내음, 가벼운 스모크가 더해진 미묘하고 풍성한 노트로 부드러우면서 강렬한 향수", status: "active", stock: 230, capacity: "50ml", images: ["https://www.aesop.com/medias/Aesop-Ro-zu-Eau-de-Parfum-50mL-Hybris-Large-684x668px.png?context=bWFzdGVyfGltYWdlc3wxNDg5MzN8aW1hZ2UvcG5nfGltYWdlcy9oNzcvaDE3Lzk1MDc3MjI5NTI3MzQucG5nfGE2MWFjMTZjMGNkZDNjNzMyYjZlZGM4OGUxZmYyODRjMWVlMzY1Y2MzMTY1ZmFhODEzZTYzMmMzZWQ0MzRjYTk"])
 Item.create(name: "휠 오 드 퍼퓸", price: 140000, category_id: 1, description: "숲을 연상시키며 짙은 그린, 흙내음이 조화롭게 어우러지는 향수", status: "active", stock: 170, capacity: "50ml", images: ["https://www.aesop.com/medias/Aesop-Fragrance-Hwyl-Eau-de-Parfum-50mL-Hybris-Large-684x668px.png?context=bWFzdGVyfGltYWdlc3wxNDQxMDV8aW1hZ2UvcG5nfGltYWdlcy9oNzEvaGU5Lzk1MDc3MjM0MTE0ODYucG5nfGEyMDlhZjJjMDQ5ZWI5MDFjMjI5M2FkZDk1NTBkNjdjMmIzY2Y4ZmQ0ZDkwYzAzMzM2YjM1MDNlMTU4MzRkNzk"])
 Item.create(name: "시트러스 향수", price: 75000, category_id: 1, description: "상큼하고 시원한 시트러스향 향수", status: "active", stock: 10, capacity: "30ml", images: ["https://t1.daumcdn.net/cfile/tistory/99AE7C355B8FA46442"])

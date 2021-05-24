@@ -2,7 +2,7 @@ class ItemsController < ApiController
   before_action :set_item, only: %i[show update category_item]
 
   def index
-    items = Item.ransack(index_params).result
+    items = Item.ransack(index_params).result.page(params[:page])
     render json: {
       items: each_serialize(items),
       total_count: items.count
@@ -19,7 +19,7 @@ class ItemsController < ApiController
   end
 
   def category_item
-    category_items = Item.joins(:category).where(category_id: params[:id])
+    category_items = Item.joins(:category).where(category_id: params[:id]).order(params[:sort])
     render json: {
       items: category_items,
       total_count: category_items.count
