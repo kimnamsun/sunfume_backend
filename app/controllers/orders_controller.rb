@@ -26,8 +26,8 @@ class OrdersController < ApiController
   end
 
   def update
+    order_ids = @user.orders.pending.last
     order_ids = @user.orders.pending.ids
-
     order_ids.each do |id|
       Order.find(id).update(order_params)
     end

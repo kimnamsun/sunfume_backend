@@ -47,6 +47,5 @@ Rails.application.routes.draw do
   get '/orders/list' => 'orders#show'
   get '/users/:id' => 'users#show'
   put '/users/:id' => 'users#update'
-  # get '/reviews' => 'reviews#index'
 
 end

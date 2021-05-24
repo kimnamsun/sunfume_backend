@@ -25,14 +25,18 @@ class LineItemsController < ApiController
     else
       order_line_items = @user.orders.last.line_items
       line_item = order_line_items.create(line_item_params)
-      render json: serialize(line_item)
+      render json: line_item
     end
   end
 
   def update
-    @line_item.update(quantity: params[:itemAmount])
-    all_line_item = LineItem.all
-    render json: each_serialize(all_line_item)
+    result = @line_item.update(quantity: params[:itemAmount], total_price: params[:price])
+
+    if result
+      render json: @line_item
+    end
+    # all_line_item = LineItem.all
+    # render json: each_serialize(all_line_item)
   end
 
   def destroy
