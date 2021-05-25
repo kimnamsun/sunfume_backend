@@ -1,10 +1,11 @@
 class LineItemsController < ApiController
-  before_action :set_user
+  before_action :set_user, only: %i[index create]
   before_action :set_line_item, only: %i[destroy update]
+  before_action :set_order_ids, only: %i[index create]
 
   def index
-    order_ids = @user.orders.pending.ids
-    line_items = LineItem.where(order_id: order_ids)
+    # order_ids = @user.orders.pending.ids
+    line_items = LineItem.where(order_id: @order_ids)
     render json: {
       line_items: each_serialize(line_items),
       total_count: line_items.count
@@ -17,8 +18,8 @@ class LineItemsController < ApiController
   end
 
   def create
-    order_ids = @user.orders.pending.ids
-    is_exist  = LineItem.where(order_id: order_ids, option_id: params[:option_id]).exists?
+    # order_ids = @user.orders.pending.ids
+    is_exist  = LineItem.where(order_id: @order_ids, option_id: params[:option_id]).exists?
 
     if is_exist
       render json: { MESSAGE: 'exist' }
@@ -35,8 +36,6 @@ class LineItemsController < ApiController
     if result
       render json: @line_item
     end
-    # all_line_item = LineItem.all
-    # render json: each_serialize(all_line_item)
   end
 
   def destroy
@@ -54,5 +53,9 @@ class LineItemsController < ApiController
 
   def set_line_item
     @line_item = LineItem.find(params[:id])
+  end
+
+  def set_order_ids
+    @order_ids = @user.orders.pending.ids
   end
 end

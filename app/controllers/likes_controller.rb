@@ -1,10 +1,9 @@
 class LikesController < ApiController
   before_action :set_user
+  before_action :set_liked_items, only: %i[index destroy]
 
   def index
-    # like_items = @user.liked_items
-    item_id = @user.liked_items
-    like_items = Item.where(id: item_id)
+    like_items = Item.where(id: @item_id)
     render json: each_serialize(like_items)
   end
 
@@ -15,13 +14,17 @@ class LikesController < ApiController
   end
 
   def destroy
-    like_delete = @user.liked_items.destroy(params[:id])
+    like_delete = @item_id.destroy(params[:id])
     render json: like_delete
   end
 
   private
   def like_params
     params.require(:like).permit(:item_id)
+  end
+
+  def set_liked_items
+    @item_id = @user.liked_items
   end
 
   def set_user
