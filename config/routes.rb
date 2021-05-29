@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
   resources :orders
   resources :line_items
+
+  resources :options
+  get '/items/:id/options' => 'options#item_options'
   
   resources :reviews do
     resources :items
@@ -47,5 +50,4 @@ Rails.application.routes.draw do
   get '/orders/list' => 'orders#show'
   get '/users/:id' => 'users#show'
   put '/users/:id' => 'users#update'
-
 end

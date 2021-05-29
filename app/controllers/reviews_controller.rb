@@ -4,6 +4,7 @@ class ReviewsController < ApiController
 
   def index
     item_id = @user.reviewed_items
+    # render json: item_id
     review_items = Item.where(id: item_id)
     render json: each_serialize(review_items)
   end
