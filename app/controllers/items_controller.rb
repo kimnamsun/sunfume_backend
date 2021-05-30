@@ -19,7 +19,7 @@ class ItemsController < ApiController
   end
 
   def category_item
-    category_items = Item.joins(:category).where(category_id: params[:id]).ransack(params[:q]).result
+    category_items = Item.where(category_id: params[:id]).ransack(params[:q]).result
     render json: {
       items: category_items,
       total_count: category_items.count
