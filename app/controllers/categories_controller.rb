@@ -2,7 +2,7 @@ class CategoriesController < ApiController
   before_action :set_category, only: %i[show update]
 
   def index
-    categories = Category.all.order("id ASC")
+    categories = Category.all.order("id asc")
     render json: each_serialize(categories)
   end
 

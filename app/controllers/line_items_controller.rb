@@ -4,7 +4,7 @@ class LineItemsController < ApiController
   before_action :set_order_ids, only: %i[index create]
 
   def index
-    line_items = LineItem.where(order_id: @order_ids)
+    line_items = LineItem.where(order_id: @order_ids).order("created_at desc")
     render json: {
       line_items: each_serialize(line_items),
       total_count: line_items.count
@@ -17,7 +17,7 @@ class LineItemsController < ApiController
   end
 
   def create
-    is_exist  = LineItem.where(order_id: @order_ids, option_id: params[:option_id]).exists?
+    is_exist = LineItem.where(order_id: @order_ids, option_id: params[:option_id]).exists?
 
     if is_exist
       render json: { MESSAGE: 'exist' }
