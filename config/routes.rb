@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     ActiveAdmin::DatabaseHitDuringLoad
   end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :users do
     post 'token' => 'users/refresh#create'
   end
@@ -27,27 +26,25 @@ Rails.application.routes.draw do
     resources :options, only: :index
     resources :likes
   end
-
-  resources :users
-  resources :categories
-
+  
   resources :likes do
     resources :items
   end
 
-  resources :orders
-  resources :line_items
-
-  resources :options
-  get '/items/:id/options' => 'options#item_options'
-  
   resources :reviews do
     resources :items
   end
 
-  get '/items/category/:id' => 'items#category_item'
-  put '/orders' => 'orders#update'
-  get '/orders/list' => 'orders#show'
+  resources :users
+  resources :categories
+  resources :orders
+  resources :line_items
+  resources :options
+  
   get '/users/:id' => 'users#show'
   put '/users/:id' => 'users#update'
+  get '/items/category/:id' => 'items#category_item'
+  get '/items/:id/options' => 'options#item_options'
+  put '/orders' => 'orders#update'
+  get '/orders/list' => 'orders#show'
 end
