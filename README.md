@@ -1,66 +1,150 @@
-# README
+# SUNFUME PROJECT (Back)
 
-## Generator
+## 🧴 프로젝트 소개
 
-새로운 Controller 만들 때
+- 향수, 바디워시 쇼핑몰 앱 제작 프로젝트
+- [Frontend Repository](https://github.com/kimnamsun/sunfume_frontend)
 
-`rails g api v1/items`
+<br>
 
-새로은 Serializer 만들 때
+## 📅 프로젝트 기간
 
-`rails g serializer v1/item`
+- 2021.05.10 ~ 2021.06.03
 
-###
+<br>
 
-## PankoSerializer
+## 🎥 프로젝트 시연영상
 
-action 에서 `render json: @object` 시 모델의 모든 내용이 response
+https://vimeo.com/559350084
 
-`render json: @object.as_json(only: [:id, :name, ... ], includes: [:comments], methods: [:image_path])` (or to_json) 등으로 serializatio하여 응답할 수 있지만 가독성 및 재활용이 어려움
+<br>
 
-따라서 serializing 을 돕는 gem을 사용. 몇가지 gem이 있는데 대표적으로 `active_model_serializers`
+## 🛠 Skills
 
-직접 사용, 비교 해봤을 때 불편한 것이 많아서 `panko_serializer` 로 결정
+### 🔙 Backend
 
-`app/serializers/...` 에 serializer 위치 기본 예시
+- Ruby on rails
+- Redis
+- Postgresql
 
-```ruby
-class ItemSerializer < Panko::Serializer
-  attributes :id, :title, :price, :image_path, :description
-  has_one :category, serializer: CategorySerializer
-  has_many :images, each_serializer: ImageEachSerializer
-  def image_path
-    object.image_path
-  end
-end
-```
+### 🔜 Frontend
 
-### basic rules
+- HTML5
+- Javascript (ES+6)
+- React
+- Typescript
+- Framework7
+- Formik & Yup
+- Tailwind.css
+- React query
+- Recoil
 
-- serializer naming 규칙
+<br>
 
-  - index - active record relation ( array ) 에 대한 serializer 는 #{모델이름}EachSerializer 로 짓는다
-  - show - active record 하나 에 대한 serialzer 는 #{모델이름}Serializer 로 짓는다
-  - 이 두가지는 인덱스에서 보여주는 정보와 상세 페이지에서 보여주는 정보가 크게 차이가 나기때문에 구분,
-  - 두가지 경우 제외하고도 필요 하다면 만들 수 있음, 하지만 serializer가 크게 다른게 아니라면 filter를 사용해서 활용 가능
-    - https://panko.dev/docs/attributes#filters
+## ✨구현 기능
 
-- `api_controller` method 만들어 놓음 활용
+### 🔙 Backend
 
-```ruby
-def serialize object, serializer_name = "#{object.class.name}Serializer"
-  self.class.module_parent.const_get("#{serializer_name}").new.serialize(object)
-end
+- 데이터베이스 모델링
 
-def each_serialize objects, serializer_name: "#{objects.name}EachSerializer"
-  Panko::ArraySerializer.new(
-    objects,
-    each_serializer: self.class.module_parent.const_get(serializer_name)
-  ).to_a
-end
-```
+- 상품 리스트 조회
+- 상품 상세
+  - 상품 상세 정보 조회
+  - 옵션 선택 후 장바구니 담기
+  - 상품 찜하기, 찜삭제
+  - 해당 상품에 달린 리뷰 조회
+- 카테고리
+  - 카테고리 리스트
+  - 카테고리별 상품 모아보기
+  - Ransack과 Ransacker를 이용한 최신순, 가격 낮은 순, 가격 높은 순 필터링
+- 장바구니
+  - 장바구니에 담은 상품 리스트 조회
+  - 장바구니에서 수량 조절 시 lineItem update
+  - 장바구니 상품 삭제 기능
+- 회원정보 조회 및 수정
+- 주문 내역 조회
+- 찜한 상품 리스트 조회
+- 주문
+  - enum을 이용한 order의 상태관리 (주문중: pending, 주문완료: active, 주문취소: disabled)
 
-PankoSerializer의 상세한 사용법은 링크 참고
+### 🔜 Frontend
 
-[github]: https://github.com/panko-serializer/panko_serializer
-[docs]: https://panko.dev/docs/
+- api config를 활용해 api요청 관리
+- react query를 이용한 서버 상태 관리
+- Typescript를 이용해 타입 강제
+- Recoil를 이용한 전역 상태 관리
+- Formik & Yup을 이용한 로그인 / 로그아웃
+- Formik & Yup을 이용한 회원가입
+- 마이페이지
+  - 회원정보 수정
+  - 주문 내역 조회
+- 상품 리스트
+  - 상품 정보
+  - 인피니트 스크롤
+- 상품 상세
+  - 상품 정보 조회
+  - 옵션 선택 후 장바구니 담기
+  - 찜하기
+  - 해당 상품에 달린 리뷰 조회
+- 카테고리
+  - 카테고리 리스트
+  - 카테고리별 상품 모아보기
+  - 최신순, 가격 낮은 순, 가격 높은 순 필터링
+- 찜목록
+  - 찜한 상품 리스트
+- 장바구니
+  - 장바구니에 담은 상품 리스트
+  - Recoil atom과 selector를 이용한 수량 조절 및 주문 금액 표시 기능
+  - 장바구니 상품 삭제 기능
+- 주문
+  - 다음 주소 api를 이용한 주문서 작성 기능
+  - 주문 버튼 클릭 시 결제 및 주문 완료 처리
+
+<br>
+
+## 💻 View
+
+- 회원가입
+  <br>
+  ![](https://images.velog.io/images/nsunny0908/post/47baaa94-d07b-4c78-84ef-bf796890f870/Jun-05-2021%2020-41-45.gif)
+- 메인
+  - 메인 슬라이드
+  - 인피니티 스크롤  
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/a67bac5a-0b82-43ca-b087-27d017438e75/Jun-05-2021%2020-44-26.gif)
+- 카테고리 상품 리스트 및 필터링
+  <br>
+  ![](https://images.velog.io/images/nsunny0908/post/f55ac019-03c3-4193-937d-b94ec8ca836d/Jun-05-2021%2020-48-47.gif)
+- 상품 상세
+  - 리뷰 조회
+  - 옵션 선택 및 장바구니 담기
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/c2cbbc95-7ddd-43ad-adad-da7a46320265/Jun-05-2021%2020-51-46.gif)
+- 장바구니
+  <br>
+  ![](https://images.velog.io/images/nsunny0908/post/fc258c6c-ec2b-46fe-a589-042b48959030/Jun-02-2021%2013-35-25.gif)
+
+- 주문
+  <br>
+  ![](https://images.velog.io/images/nsunny0908/post/1c723a5a-6149-46d7-b403-3bcf3105ec70/Jun-05-2021%2021-09-57.gif)
+- 찜하기
+  - 찜목록
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/d1c370d9-effb-4d67-8cd3-2dd3c79c1f86/Jun-05-2021%2021-02-44.gif)
+- 마이페이지
+
+  - 회원정보 수정
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/bdf81484-1945-4d47-8760-39c78404d794/Jun-05-2021%2021-04-47.gif)
+  - 주문 목록 조회
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/3ad487a1-e197-4b2f-8579-04a2bc8b63bc/Jun-05-2021%2021-06-57.gif)
+  - 리뷰 목록 조회
+    <br>
+    ![](https://images.velog.io/images/nsunny0908/post/d531fffd-7503-4ed1-924d-151b4ff3f99e/Jun-05-2021%2021-07-52.gif)
+
+  <br>
+
+## ❗️ 레퍼런스
+
+이 프로젝트는 인썸니아에서 학습목적으로 만들었습니다. 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
